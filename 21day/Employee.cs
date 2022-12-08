@@ -9,34 +9,49 @@ public class Employee
     }
     public string Name { get; set; }
 
-    public void AddGrade(string symbolsGrade)
+    public void AddGrade(string gradeWithSymbols)
     {
-        if (symbolsGrade.Equals("1+", || "2+"))
-
-        { 
-            switch (symbolsGrade)
+        string[] allowdGradeWithSymbols = new string[5] { "1+", "2+", "3+", "4+", "5+" };
+        var found = true;
+        foreach (string s in allowdGradeWithSymbols)
+        {
+            if (found && string.Equals(gradeWithSymbols, s))
             {
-                case "1+":
-                    this.grades.Add(1.50);
-                    break;
-                case "2+":
-                    this.grades.Add(2.50);
-                    break;
-                case "3+":
-                    this.grades.Add(3.50);
-                    break;
-                case "4+":
-                    this.grades.Add(4.50);
-                    break;
-                case "5+":
-                    this.grades.Add(5.50);
-                    break;
-                default:
-                    this.grades.Add(0);
-                    break;
+                Console.WriteLine($"{s} and {gradeWithSymbols}");
+                switch (gradeWithSymbols)
+                {
+                    case "1+":
+                        this.grades.Add(1.50);
+                        break;
+                    case "2+":
+                        this.grades.Add(2.50);
+                        break;
+                    case "3+":
+                        this.grades.Add(3.50);
+                        break;
+                    case "4+":
+                        this.grades.Add(4.50);
+                        break;
+                    case "5+":
+                        this.grades.Add(5.50);
+                        break;
+                    default:
+                        this.grades.Add(0);
+                        break;
+                }
             }
+
+            else
+            {
+                found = false;
+                Console.WriteLine("bla");
+            }
+                
+            
         }
-       } 
+     
+    }
+ 
 
     public void AddGrade(char grade) 
     {
