@@ -37,7 +37,7 @@ public class Employee
             }
         }
        } 
-   
+
     public void AddGrade(char grade) 
     {
         switch(grade)
