@@ -9,15 +9,17 @@ public class Employee
     }
     public string Name { get; set; }
 
+    public void Ad
+
     public void AddGrade(string gradeWithSymbols)
     {
         string[] allowdGradeWithSymbols = new string[5] { "1+", "2+", "3+", "4+", "5+" };
-        var found = true;
-        foreach (string s in allowdGradeWithSymbols)
+
+        for (int i = 0; i < allowdGradeWithSymbols.Length; i++)
         {
-            if (found && string.Equals(gradeWithSymbols, s))
+            if (allowdGradeWithSymbols[i].Equals(gradeWithSymbols))
             {
-                Console.WriteLine($"{s} and {gradeWithSymbols}");
+                Console.WriteLine($"Added {gradeWithSymbols}");
                 switch (gradeWithSymbols)
                 {
                     case "1+":
@@ -38,18 +40,10 @@ public class Employee
                     default:
                         this.grades.Add(0);
                         break;
-                }
-            }
 
-            else
-            {
-                found = false;
-                Console.WriteLine("bla");
-            }
-                
-            
+                }  
+            }       
         }
-     
     }
  
 
