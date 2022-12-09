@@ -6,7 +6,7 @@ internal class Program
     {
         var pawel = new Employee("Pawel");
         pawel.AddGrade("5+");
-        pawel.AddGrade("3+");
+        pawel.AddGrade("1");
         pawel.AddGrade("1+");
 
 

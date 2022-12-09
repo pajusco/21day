@@ -11,6 +11,8 @@ public class Employee
     
     public void AddGrade(string gradeWithSymbols)
     {
+        var stringToInt = Int16.Parse(gradeWithSymbols);
+
         switch (gradeWithSymbols)
         {
             case "1+":
@@ -30,8 +32,20 @@ public class Employee
                 break;
             default:
                 throw new ArgumentException("Please provide a grade in the range 1-5 ", nameof(gradeWithSymbols));
+                
         }
-    }
+        switch (stringToInt)
+        {
+            case stringToInt:
+                stringToInt > 0 || stringToInt < 6
+                this.grades.Add(stringToInt);
+                break;
+            default:
+                Console.WriteLine("bla");
+                break;
+        }
+
+        }
  
     public void AddGrade(char grade) 
     {
