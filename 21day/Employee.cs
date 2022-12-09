@@ -8,45 +8,31 @@ public class Employee
         this.Name = name;
     }
     public string Name { get; set; }
-
-    public void Ad
-
+    
     public void AddGrade(string gradeWithSymbols)
     {
-        string[] allowdGradeWithSymbols = new string[5] { "1+", "2+", "3+", "4+", "5+" };
-
-        for (int i = 0; i < allowdGradeWithSymbols.Length; i++)
+        switch (gradeWithSymbols)
         {
-            if (allowdGradeWithSymbols[i].Equals(gradeWithSymbols))
-            {
-                Console.WriteLine($"Added {gradeWithSymbols}");
-                switch (gradeWithSymbols)
-                {
-                    case "1+":
-                        this.grades.Add(1.50);
-                        break;
-                    case "2+":
-                        this.grades.Add(2.50);
-                        break;
-                    case "3+":
-                        this.grades.Add(3.50);
-                        break;
-                    case "4+":
-                        this.grades.Add(4.50);
-                        break;
-                    case "5+":
-                        this.grades.Add(5.50);
-                        break;
-                    default:
-                        this.grades.Add(0);
-                        break;
-
-                }  
-            }       
+            case "1+":
+                this.grades.Add(1.50);
+                break;
+            case "2+":
+                this.grades.Add(2.50);
+                break;
+            case "3+":
+                this.grades.Add(3.50);
+                break;
+            case "4+":
+                this.grades.Add(4.50);
+                break;
+            case "5+":
+                this.grades.Add(5.50);
+                break;
+            default:
+                throw new ArgumentException("Please provide a grade in the range 1-5 ", nameof(gradeWithSymbols));
         }
     }
  
-
     public void AddGrade(char grade) 
     {
         switch(grade)

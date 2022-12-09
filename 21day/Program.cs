@@ -5,7 +5,8 @@ internal class Program
     private static void Main(string[] args)
     {
         var pawel = new Employee("Pawel");
-        pawel.AddGrade("4+");
+        pawel.AddGrade("5+");
+        pawel.AddGrade("3+");
         pawel.AddGrade("1+");
 
 
