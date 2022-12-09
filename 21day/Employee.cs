@@ -8,44 +8,50 @@ public class Employee
         this.Name = name;
     }
     public string Name { get; set; }
-    
+
+
     public void AddGrade(string gradeWithSymbols)
     {
-        var stringToInt = Int16.Parse(gradeWithSymbols);
-
-        switch (gradeWithSymbols)
+        short isInt;
+        bool gradeIsInt = short.TryParse(gradeWithSymbols, out isInt);
+        bool foundIntInRange = (isInt > 0 & isInt < 6);
+        if (!gradeIsInt)
         {
-            case "1+":
-                this.grades.Add(1.50);
-                break;
-            case "2+":
-                this.grades.Add(2.50);
-                break;
-            case "3+":
-                this.grades.Add(3.50);
-                break;
-            case "4+":
-                this.grades.Add(4.50);
-                break;
-            case "5+":
-                this.grades.Add(5.50);
-                break;
-            default:
-                throw new ArgumentException("Please provide a grade in the range 1-5 ", nameof(gradeWithSymbols));
-                
+            switch (gradeWithSymbols)
+            {
+                case "1+":
+                    this.grades.Add(1.50);
+                    break;
+                case "2+":
+                    this.grades.Add(2.50);
+                    break;
+                case "3+":
+                    this.grades.Add(3.50);
+                    break;
+                case "4+":
+                    this.grades.Add(4.50);
+                    break;
+                case "5+":
+                    this.grades.Add(5.50);
+                    break;
+                default:
+                    short.TryParse(gradeWithSymbols, out isInt);
+                    throw new ArgumentException("Please provide a grade in the range 1-5 ", nameof(gradeWithSymbols));
+            }
         }
-        switch (stringToInt)
+        else if (foundIntInRange)
         {
-            case stringToInt:
-                stringToInt > 0 || stringToInt < 6
-                this.grades.Add(stringToInt);
-                break;
-            default:
-                Console.WriteLine("bla");
-                break;
+            this.grades.Add(isInt);
+            Console.WriteLine("test");
         }
+        else if (!foundIntInRange)
+        {
+            throw new ArgumentException("Please provide a grade in the range 1-5 ", nameof(gradeWithSymbols));
+        }
+    }
 
-        }
+        
+
  
     public void AddGrade(char grade) 
     {
