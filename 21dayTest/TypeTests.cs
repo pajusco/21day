@@ -2,6 +2,34 @@
 {
     public class TypeTests
     {
+
+        public delegate string WriteMessage(string message);
+
+        int counter = 0;
+
+        [Fact]
+        public void WriteMessageDelegateCanPointToMethod()
+        {
+            WriteMessage del = ReturnMessage;
+            del += ReturnMessage;
+            del += ReturnMessage2;
+
+            var result = del("HELLO");
+            Assert.Equal(3, counter);
+
+        }
+        string ReturnMessage(string message)
+        {
+            counter++;
+            return message;
+        }
+
+        string ReturnMessage2(string message)
+        {
+            counter++;
+            return message.ToUpper();
+        }
+
         [Fact]
         public void GetEmployeeReturnsDiffrentsObjects()
         {
@@ -25,9 +53,10 @@
             GetEmployeeSetName(out emp1, "New Name");
             Assert.Equal("New Name", emp1.Name);
         }
-        private void GetEmployeeSetName(out Employee emp, string name)
+        private void GetEmployeeSetName(out Student emp, string name)
         {
-            emp = new Employee(name);
+            emp = new Student(name);
+            
         }
         [Fact]
         public void CanSetNameFromReference()
@@ -37,11 +66,11 @@
             Assert.Equal("NewName", emp1.Name);
             
         }
-        private Employee GetEmployee(string name)
+        private Student GetEmployee(string name)
         {
-            return new Employee(name);
+            return new Student(name);
         }
-        private void SetName(Employee employee, string name)
+        private void SetName(Student employee, string name)
         {
             employee.Name = name;
         }

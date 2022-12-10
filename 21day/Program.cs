@@ -1,28 +1,46 @@
-﻿using System;
+﻿using _21day;
+using System;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        var pawel = new Employee("Pawel");
-        pawel.AddGrade("5+");
-        pawel.AddGrade("7");
-        pawel.AddGrade("1+");
+        StartProgram();
+    }
 
-        pawel.AddGrade("4");
-        pawel.AddGrade("4");
-        pawel.AddGrade("3+");
-        pawel.AddGrade("3+");
-        pawel.AddGrade("4");
-        pawel.AddGrade("4");
-        pawel.AddGrade("4");
+    private static void StartProgram()
+    {
+        Console.WriteLine("Please Entry Student Name File you want to Create. : \r\n Entry Name: ");
 
+        string userInput = Console.ReadLine();
 
+        if (userInput != null)
+        {
+            string studenObjName = userInput;
+
+            Student student = CreateStudent(studenObjName);
+            string newStudenGetName = student.Name;
+            student.GradeAdded += OnGradeAdded;
+            student.lowGradAdded += LowGradeAdded;
+            EnterGrade(student, student.Name);
+            student.GetStatistics();
+
+            Console.WriteLine("test T-001");
+        }
+        else
+        {
+            Environment.Exit(0);
+        }
+    }
+
+    private static void EnterGrade(IStudent student,string input)
+    {
         while (true)
         {
-            Console.WriteLine($"Hello ! Enter grade for {pawel.Name} // OR Q to exit");
-            var input = Console.ReadLine();
-
+   
+            Console.WriteLine($"Hello ! Enter grade for {student.Name} // OR Q to exit");
+            // Console.ReadLine();
+            
             if (input == "q")
             {
                 break;
@@ -31,9 +49,9 @@ internal class Program
             try
             {
                 var grade = double.Parse(input);
-                pawel.AddGrade(grade);
+                student.AddGrade(grade);
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -42,28 +60,44 @@ internal class Program
                 Console.WriteLine(ex.Message);
             }
 
-           finally 
+            finally
             {
+                // input = Console.ReadLine();
                 Console.WriteLine("Part of finally Block Code");
-                }
-
+            }
+            
+            Console.WriteLine($"Hello ! Enter grade for {student.Name} // OR Q to exit");
+            input = Console.ReadLine();
         }
-        var stats = pawel.GetStatistics();
-        Console.WriteLine($"High : {stats.High}");
-        Console.WriteLine($"Low : {stats.Low}");
-        Console.WriteLine($"Average : {stats.Average}");
-        Console.WriteLine($"Letter  : {stats.Letter} ");
+    }
 
+    public static Student CreateStudent(string student)
+    {
+        return new Student(student);
+    }
 
+    static void OnGradeAdded(object sender, EventArgs args)
+    {
+        Console.WriteLine("New Grade  is Added ! Test X1");
+    }
 
-        pawel.AddGradeString("22,2"); 
-        pawel.AddGradeString("10,2");
-        pawel.AddGradeString("1,00");
+    static void LowGradeAdded(object sender, EventArgs args)
+    {
+        Console.WriteLine("Oh no! We should inform student’s parents about this fact");
+    }
 
-
+    static void GetStats()
+    {
+        Console.WriteLine("Jestem tu");
+        Console.ReadKey();
 
     }
-      }
+}
+
+
+
+    
+
 
     
 
