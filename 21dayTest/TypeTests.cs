@@ -2,7 +2,22 @@
 {
     public class TypeTests
     {
+
+        public delegate string WriteMessage(string message);
+
         [Fact]
+        public void WriteMessageDelegateCanPointToMethod()
+        {
+            WriteMessage del;
+
+            del = ReturnMessage;
+
+        }
+        string ReturnMessage(string message)
+        {
+            return message;
+        }
+
         public void GetEmployeeReturnsDiffrentsObjects()
         {
             var emp1 = GetEmployee("Adam");
