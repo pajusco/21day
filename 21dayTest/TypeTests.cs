@@ -4,7 +4,6 @@
     {
 
         public delegate string WriteMessage(string message);
-
         int counter = 0;
 
         [Fact]
@@ -29,8 +28,8 @@
             counter++;
             return message.ToUpper();
         }
-
-        [Fact]
+        
+       [Fact]
         public void GetEmployeeReturnsDiffrentsObjects()
         {
             var emp1 = GetEmployee("Adam");
